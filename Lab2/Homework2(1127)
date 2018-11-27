@@ -1,0 +1,24 @@
+1.Explain why do we want sometimes to use setImmediate instead of using setTimeout?
+    setTimeout is simply like calling the function after delay has finished. Whenever a function is called it is not executed immediately, but queued so that it is executed after all the executing and currently queued eventhandlers finish first. setTimeout(,0) essentially means execute after all current functions in the present queue get executed. No guarantees can be made about how long it could take.
+
+    setImmediate is similar in this regard except that it doesn’t use queue of functions. It checks queue of I/O eventhandlers. If all I/O events in the current snapshot are processed, it executes the callback. It queues them immedieately after the last I/O handler somewhat like process.nextTick. So it is faster.
+
+    Also (setTimeout,0) will be slow because it will check the timer at least once before executing. At times it can be twice as slow.
+
+2.Explain the different etween process.nextTick and setImmediate?
+    The main difference between the two is that process.nextTick() queues its callbacks before I/O callbacks whereas setImmediate() queues its callbacks after I/O callbacks.
+    process.nextTick() defer the execution of an action till the next pass around the event loop or simply it calls the callback function once the current execution of the event loop is finished.
+    setImmediate() is been introduced with a purpose just opposite to that of process.nextTick(). setImmediate executes a callback on the next cycle of the event loop and gives back to the event loop for executing any I/O operations. According to NodeJS.org setTimeout() is there to schedule execution of a one-time callback after delay milliseconds. It returns a timeoutObject for possible use with clearTimeout().
+
+3.Name 10 core modules that Node provides y default?
+    
+    1) http - To make Node.js act as an HTTP server
+    2) https - To make Node.js act as an HTTPS server
+    3) events - To handle events
+    4) buffer - To handle binary data
+    5) url - To parse URL strings
+    6) stream - To handle streaming data
+    7) path - To handle file paths
+    8) net - To creat servers and clients
+    9）cluster - To split a single Node process into multiple process
+    10) assert - provides a set of assertion tests. 
