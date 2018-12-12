@@ -5,10 +5,11 @@ import {Directive, HostListener} from '@angular/core';
 })
 export class LoggableDirective {
 
-  constructor() { }
 
-  @HostListener('dbClick') print(){
+
+  @HostListener('dblclick') print(){
     console.log('DIV element has been clicked');
   }
+
 
 }

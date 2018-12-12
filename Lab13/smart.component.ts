@@ -2,12 +2,17 @@ import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-smart',
-  template: `<div><ul><li *ngFor="let data of datas"> <app-dump>{{data}}</app-dump></li></ul></div> `,
+  template: `<app-dump (data)="loop($event)">{{item}}</app-dump> `,
   styles: ['']
 })
 export class SmartComponent {
 
-  @Input() datas: string[];
+
+  item:string;
+
+  loop(item:string) {
+    this.item=item;
+  }
 
 
 }
